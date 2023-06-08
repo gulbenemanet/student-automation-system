@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mainPage</title>
+    <link rel="stylesheet" href="../../public/user.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="nav">
+        <input type="checkbox" id="nav-check">
+        <div class="nav-header">
+            <div class="nav-title">
+                Özlük Bilgileri
+            </div>
+            <div class="nav-title-end">
+                Öğrenci İşleri Otomasyonu
+            </div>
+        </div>
+        <div class="nav-btn">
+            <label for="nav-check">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+        </div>
+        <div class="nav-links">
+            <a href="/student/mainPage">Ana Sayfa</a>
+            <a href="/student/dersAlma">Ders Alma</a>
+            <a href="/student/exam-result">Sınav Sonuçları</a>
+            <a href="/student/syllabus">Ders Programı</a>
+            <a href="/student/ozluk">Özlük Bilgileri</a>
+            <a href="/student/lessons">Alınan Dersler</a>
+            <a href="/student/messages">Mesajlar</a>
+            <a href="/student/logOut">Çıkış Yap</a>
+        </div>
+    </div>
+    <div class="wrap">
+        <img src="../public/logo/book.png" class="image-bg">
+        <div class="content">
+            <a id="data"></a>
+            <div class="content" style="margin-top: 150px;">
+                <div class="row justify-content-center mt-5">
+                    <div class="col-auto">
+                        <table class="table table-bordered table-responsive table-hover" id="tablee">
+                            <thead style="background-color: #CDD6FF;"></thead>
+                            <tbody id="tbody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const data = document.getElementById("data");
+
+        const veriYazdirma = (keys, values) => {
+            table = document.getElementById('tablee');
+
+            for (let i = 0; i < keys.length; i++) {
+                if (keys[i] == "studentNumber") {
+                    keys[i] = "Student ID";
+                }
+                if (keys[i] == "courses") {
+                    keys[i] = "Verilen Ders ID'leri";
+                }
+                if (keys[i] == "tcNumber") {
+                    keys[i] = "TC Kimlik";
+                }
+                if (keys[i] == "email") {
+                    keys[i] = "Email";
+                }
+                if (keys[i] == "name") {
+                    keys[i] = "İsim";
+                }
+                if (keys[i] == "lastName") {
+                    keys[i] = "Soyisim";
+                }
+                if (keys[i] == "fatherName") {
+                    keys[i] = "Baba İsmi";
+                }
+                if (keys[i] == "motherName") {
+                    keys[i] = "Anne İsmi";
+                }
+                if (keys[i] == "gender") {
+                    keys[i] = "Cinsiyet";
+                }
+                if (keys[i] == "birthDate") {
+                    keys[i] = "Doğum Tarihi";
+                }
+                if (keys[i] == "faculty") {
+                    keys[i] = "Fakülte";
+                }
+                if (keys[i] == "department") {
+                    keys[i] = "Bölüm";
+                }
+                if (keys[i] == "term") {
+                    keys[i] = "Dönem";
+                }
+                if (keys[i] == "situation") {
+                    keys[i] = "Öğrenim Durumu";
+                }
+                if (keys[i] == "status") {
+                    keys[i] = "Öğrencilik Durumu";
+                }
+                if (keys[i] == "military") {
+                    keys[i] = "Askerlik Durumu";
+                }
+                if (keys[i] == "civilStatus") {
+                    keys[i] = "Medeni Hali";
+                }
+                if (keys[i] == "phoneNumber") {
+                    keys[i] = "Telefon Numarası";
+                }
+                if (keys[i] == "passPrep") {
+                    keys[i] = "Hazırlık Durumu";
+                }
+
+                let tr = document.createElement('tr');
+
+                let tbody = document.getElementById('tbody');
+                tbody.appendChild(tr);
+
+                let td = document.createElement('td');
+                tr.appendChild(td)
+                let td1 = document.createElement('td');
+                tr.appendChild(td1)
+
+                td.innerHTML = keys[i];
+                td1.innerHTML = values[i];
+            }
+        }
+
+        function getozluk() {
+
+            fetch('/student/getozluk')
+                .then(response => response.json())
+                .then((son) => {
+                    const ozluk = son.data.ozluk
+                        // console.log(son.data.ozluk);
+                    delete son.data.ozluk;
+                    const keys = Object.keys(son.data) // keys tüm
+                    const keysO = Object.keys(ozluk) // keys ozluk
+                    const keysMerge = keys.concat(keysO)
+
+
+                    const values = Object.values(son.data)
+                    const valuesO = Object.values(ozluk)
+                    const valuesMerge = values.concat(valuesO);
+
+                    //data.innerHTML = JSON.stringify(keys);
+                    // console.log(keysMerge);
+                    // console.log(valuesMerge);
+                    veriYazdirma(keysMerge, valuesMerge)
+                        // data.innerHTML = JSON.stringify(values);
+                })
+        }
+        getozluk()
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+</body>
+
+</html>

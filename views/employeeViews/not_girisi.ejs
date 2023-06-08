@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mainPage</title>
+    <link rel="stylesheet" href="../../public/user.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="nav">
+        <input type="checkbox" id="nav-check">
+        <div class="nav-header">
+            <div class="nav-title">
+                Not Girişi
+            </div>
+            <div class="nav-title-end">
+                Öğrenci İşleri Otomasyonu
+            </div>
+        </div>
+        <div class="nav-btn">
+            <label for="nav-check">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+        </div>
+
+        <div class="nav-links">
+            <a href="/employee/mainPage">Ana Sayfa</a>
+            <a href="/employee/classes">Sınıflar</a>
+            <a href="/employee/notGirisi">Not Girişi</a>
+            <a href="/employee/syllabus">Ders Programı</a>
+            <a href="/employee/ozluk">Özlük Bilgileri</a>
+            <a href="/employee/messages">Mesajlar</a>
+            <a href="/employee/logOut">Çıkış Yap</a>
+        </div>
+    </div>
+    <div class="wrap">
+        <img src="../public/logo/book.png" class="image-bg">
+        <div class="content" id="content">
+            <div id="btns" class="d-flex flex-column mt-" style="position:relative ; margin: auto; width: 800px; margin-top: 100px;">
+                <div class="row justify-content-center">
+                    <div class="col-auto">
+                        <p>Dersi Seçin:</p>
+                        <select id="courses"></select> <br><br>
+                        <form id="myForm" method="POST" action="/employee/postGrade">
+                            <table class="table table-bordered table-responsive table-hover" id="tablee">
+                                <thead id="thead" style="background-color: #CDD6FF;"></thead>
+                                <tbody id="tbody">
+                                </tbody>
+                            </table>
+                            <button type="submit" class="btn btn-primary btn-lg" id="submit">Kaydet</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        const data = document.getElementById("data ");
+
+        const veriYazdirma = (courses, students) => {
+            let coursesD = document.getElementById('courses');
+            let bos = document.createElement('option');
+            bos.value = "0";
+            bos.text = "Dersi Seçin"
+            coursesD.appendChild(bos);
+
+            for (let i = 0; i < courses.length; i++) {
+                let option = document.createElement('option');
+                option.value = courses[i];
+                option.text = courses[i]
+                coursesD.appendChild(option);
+            }
+            coursesD.onchange = () => {
+                console.log(coursesD.value);
+                while (tbody.firstChild) {
+                    tbody.firstChild.remove();
+                }
+                while (thead.firstChild) {
+                    thead.firstChild.remove();
+                }
+
+                for (let i = 0; i < courses.length; i++) {
+                    if (courses[i] == coursesD.value) {
+
+                        let thead = document.getElementById('thead');
+                        let tr1 = document.createElement('tr');
+
+                        thead.appendChild(tr1);
+
+                        let th = document.createElement('th');
+                        let th1 = document.createElement('th');
+                        let th2 = document.createElement('th');
+                        let th3 = document.createElement('th');
+                        tr1.appendChild(th)
+                        tr1.appendChild(th1)
+                        tr1.appendChild(th2)
+                        tr1.appendChild(th3)
+                        th.innerHTML = "Öğrenci Numarası"
+                        th1.innerHTML = "İsim Soyisim"
+                        th2.innerHTML = "Vize Notu"
+                        th3.innerHTML = "Final Notu"
+                        let form = document.getElementById('myForm');
+                        let inputName = document.createElement('input');
+                        inputName.name = "courseName";
+                        inputName.value = courses[i];
+                        form.appendChild(inputName);
+                        inputName.style.display = "none";
+                        for (let j = 0; j < students[i].length; j++) {
+                            let tr2 = document.createElement('tr');
+
+                            let tbody = document.getElementById('tbody');
+
+                            tbody.appendChild(tr2);
+                            let inputNo = document.createElement('input');
+
+                            inputNo.name = "studentNumber";
+                            inputNo.value = students[i][j].studentNumber
+                            form.appendChild(inputNo)
+                            inputNo.style.display = "none";
+
+                            // console.log(courses[i]);
+
+
+                            let td = document.createElement('td');
+                            tr2.appendChild(td)
+                            let td1 = document.createElement('td');
+                            tr2.appendChild(td1)
+                            let t2 = document.createElement('td');
+                            tr2.appendChild(t2);
+                            let inputV = document.createElement('input');
+                            inputV.name = "gradeMid"
+                            t2.appendChild(inputV);
+                            let t3 = document.createElement('td');
+                            tr2.appendChild(t3);
+                            let inputF = document.createElement('input');
+                            inputF.name = "gradeFin";
+                            t3.appendChild(inputF);
+
+                            td.innerHTML = "Öğr. No: " + students[i][j].studentNumber;
+                            td1.innerHTML = students[i][j].name + ' ' + students[i][j].lastName;
+                        }
+                    }
+                }
+            }
+        }
+
+        function getozluk() {
+            fetch('/employee/getClasses')
+                .then(response => response.json())
+                .then((son) => {
+                    console.log(son.data);
+                    const courses = Object.keys(son.data)
+                    const students = Object.values(son.data)
+                    console.log(students);
+                    veriYazdirma(courses, students)
+                })
+        }
+        getozluk()
+    </script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+</body>
+
+</html>

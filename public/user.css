@@ -1,0 +1,219 @@
+.nav {
+    height: 50px;
+    width: 100%;
+    background-color: #004AAD;
+    position: relative;
+}
+
+.nav>.nav-header {
+    display: inline;
+}
+
+.nav>.nav-header>.nav-title {
+    display: inline-block;
+    font-size: 22px;
+    color: white;
+    padding: 10px 10px 10px 52px;
+}
+
+.nav>.nav-header>.nav-title-end {
+    display: inline-block;
+    font-size: 22px;
+    color: white;
+    padding: 10px 10px 10px 10px;
+    position: absolute;
+    right: 0px;
+}
+
+.nav>.nav-btn {
+    display: none;
+}
+
+.nav>.nav-links {
+    display: inline;
+    float: right;
+    font-size: 15px;
+}
+
+.nav>.nav-links>a {
+    display: inline-block;
+    padding: 13px 10px 13px 10px;
+    text-decoration: none;
+    color: #efefef;
+}
+
+.nav>.nav-links>a:hover {
+    background-color: 004AA;
+}
+
+.nav>#nav-check {
+    display: none;
+}
+
+@media (max-width:1600px) {
+    .nav>.nav-btn {
+        display: inline-block;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+    }
+    .nav>.nav-btn>label {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        padding: 13px;
+    }
+    .nav>.nav-btn>label:hover,
+    .nav #nav-check:checked~.nav-btn>label {
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+    .nav>.nav-btn>label>span {
+        display: block;
+        width: 25px;
+        height: 10px;
+        border-top: 2px solid #eee;
+    }
+    .nav>.nav-links {
+        position: absolute;
+        display: block;
+        width: 20%;
+        background-color: #004AAD;
+        height: 0px;
+        transition: all 0.3s ease-in;
+        overflow-y: hidden;
+        top: 50px;
+        left: 0px;
+        z-index: 2;
+    }
+    .nav>.nav-links>a {
+        display: block;
+        width: 100%;
+        z-index: 1;
+    }
+    .nav>#nav-check:not(:checked)~.nav-links {
+        height: 0px;
+    }
+    .nav>#nav-check:checked~.nav-links {
+        height: calc(100vh - 50px);
+        overflow-y: auto;
+    }
+}
+
+@media only screen and (min-width:1080px) {
+    /*BU TANIMLAMA MASA ÜSTÜ BİLGİSAYARLAR İÇİN GEÇERLİDİR*/
+    .wrap {
+        overflow: hidden;
+        /* position: relative; */
+    }
+    .image-bg {
+        opacity: 0.1;
+        position: absolute;
+        z-index: 0;
+        display: block;
+        margin-right: auto;
+        width: 50%;
+        height: 50%;
+        margin-top: 8%;
+        margin-left: 340px;
+    }
+    .content {
+        position: relative;
+        z-index: 1;
+    }
+    table.table-bordered>thead>tr>th {
+        border: 2px solid #99ACFF;
+    }
+    table.table-bordered>tbody>tr>td {
+        border: 2px solid #99ACFF;
+    }
+}
+
+@media only screen and (min-width: 767px) and (max-width: 1080px) {
+    /*BU TANIMLAMA TABLETLER İÇİN GEÇERLİDİR*/
+    .wrap {
+        overflow: hidden;
+        /* position: relative; */
+    }
+    .image-bg {
+        opacity: 0.1;
+        position: absolute;
+        z-index: 0;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+        height: 50%;
+        margin-top: 20%;
+        margin-left: 170px;
+    }
+    .content {
+        position: relative;
+        z-index: 1;
+    }
+    table.table-bordered>thead>tr>th {
+        border: 2px solid #99ACFF;
+    }
+    table.table-bordered>tbody>tr>td {
+        border: 2px solid #99ACFF;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    /*BU TANIMLAMA TABLETLER İÇİN GEÇERLİDİR*/
+    .wrap {
+        overflow: hidden;
+        /* position: relative; */
+    }
+    .image-bg {
+        opacity: 0.1;
+        position: absolute;
+        z-index: 0;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+        height: 50%;
+        margin-top: 20%;
+        margin-left: 40px;
+    }
+    .content {
+        position: relative;
+        z-index: 1;
+    }
+    table.table-bordered>thead>tr>th {
+        border: 2px solid #99ACFF;
+    }
+    table.table-bordered>tbody>tr>td {
+        border: 2px solid #99ACFF;
+    }
+}
+
+@media only screen and (max-width: 479px) {
+    /*BU TANIMLAMA TELEFONLAR İÇİN GEÇERLİDİR*/
+    .wrap {
+        overflow: hidden;
+        /* position: relative; */
+    }
+    .image-bg {
+        opacity: 0.1;
+        position: absolute;
+        z-index: 0;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+        height: 50%;
+        margin-top: 20%;
+        margin-left: 40px;
+    }
+    .content {
+        position: relative;
+        z-index: 1;
+    }
+    table.table-bordered>thead>tr>th {
+        border: 2px solid #99ACFF;
+    }
+    table.table-bordered>tbody>tr>td {
+        border: 2px solid #99ACFF;
+    }
+}

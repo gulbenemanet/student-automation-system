@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mainPage</title>
+    <link rel="stylesheet" href="../../public/user.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="nav">
+        <input type="checkbox" id="nav-check">
+        <div class="nav-header">
+            <div class="nav-title">
+                Ders Alma
+            </div>
+            <div class="nav-title-end">
+                Öğrenci İşleri Otomasyonu
+            </div>
+        </div>
+        <div class="nav-btn">
+            <label for="nav-check">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+        </div>
+
+        <div class="nav-links">
+            <a href="/student/mainPage">Ana Sayfa</a>
+            <a href="/student/dersAlma">Ders Alma</a>
+            <a href="/student/exam-result">Sınav Sonuçları</a>
+            <a href="/student/syllabus">Ders Programı</a>
+            <a href="/student/ozluk">Özlük Bilgileri</a>
+            <a href="/student/lessons">Alınan Dersler</a>
+            <a href="/student/messages">Mesajlar</a>
+            <a href="/student/logOut">Çıkış Yap</a>
+        </div>
+    </div>
+    <div class="wrap">
+        <img src="../public/logo/book.png" class="image-bg">
+        <div class="content" style="margin-top: 150px;">
+            <div class="form">
+                <form name="myForm" onsubmit="return validateForm()" method="post" action="/student/postCourses" id="formC">
+                    <div class="row justify-content-center mt-5">
+                        <h3 style="text-align: center;"> Dönem Dersleri:</h3>
+                        <div class="col-auto">
+                            <table class="table table-bordered table-responsive table-hover" id="tableTerm" style="width: 600px;">
+                                <thead id="thead" style="background-color: #CDD6FF;">
+                                    <tr>
+                                        <th>
+                                            Dersin Adı
+                                        </th>
+                                        <th>
+                                            Dersi Veren
+                                        </th>
+                                        <th>
+                                            Ders Kredisi
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodyT">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-5">
+                        <h3 style="text-align: center;"> Alttan Dersler:</h3>
+                        <div class="col-auto">
+                            <table class="table table-bordered table-responsive table-hover" id="tableFail" style="width: 600px;">
+                                <thead id="thead" style="background-color: #CDD6FF;">
+                                    <tr>
+                                        <th>
+                                            Dersin Adı
+                                        </th>
+                                        <th>
+                                            Dersi Veren
+                                        </th>
+                                        <th>
+                                            Ders Kredisi
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodyF">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-12 text-center">
+                        <button type="submit" class="btn btn-primary btn-lg" id="submit">Dersleri Al</button>
+                        <p id="error"></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        let deneme = false;
+        let error = document.getElementById('error')
+
+        function validateForm() {
+            let x = document.getElementsByTagName("input");
+            for (let i = 0; i < x.length; i++) {
+                if (x[i].type == "checkbox") {
+                    if (x[i].checked)
+                        deneme = true
+                }
+            }
+            if (deneme == false) {
+                error.innerHTML = "Hiçbir Dersi Seçmeden Alamazsın"
+                return false
+            }
+        }
+
+        const data = document.getElementById("data");
+        let chechkSize = 0;
+        const veriYazdirmaTerm = (data) => {
+            table = document.getElementById('tableTerm');
+
+            data.forEach(element => {
+                let tr = document.createElement('tr');
+                let check = document.createElement('input');
+                let form = document.getElementById('formC')
+                check.type = 'checkbox';
+                let tbody = document.getElementById('tbodyT');
+                tbody.appendChild(tr);
+                // console.log(element.courseName);
+                let td = document.createElement('td');
+                tr.appendChild(td)
+                let td1 = document.createElement('td');
+                tr.appendChild(td1)
+                let td2 = document.createElement('td');
+                tr.appendChild(td2)
+                let td3 = document.createElement('td');
+                tr.appendChild(td3)
+
+                td.innerHTML = element.cName;
+                td1.innerHTML = element.tName;
+                td2.innerHTML = element.credit;
+                check.id = element.courseId
+                check.name = element.courseId
+                td3.appendChild(check)
+            });
+        }
+        const veriYazdirmaFail = (data) => {
+            table = document.getElementById('tableFail');
+
+            data.forEach(element => {
+                let tr = document.createElement('tr');
+                let check = document.createElement('input');
+                let form = document.getElementById('formC')
+                check.type = 'checkbox';
+                let tbody = document.getElementById('tbodyF');
+                tbody.appendChild(tr);
+                // console.log(element.courseName);
+                let td = document.createElement('td');
+                tr.appendChild(td)
+                let td1 = document.createElement('td');
+                tr.appendChild(td1)
+                let td2 = document.createElement('td');
+                tr.appendChild(td2)
+                let td3 = document.createElement('td');
+                tr.appendChild(td3)
+
+                td.innerHTML = element.cName;
+                td1.innerHTML = element.tName;
+                td2.innerHTML = element.credit
+                check.id = element.courseId
+                check.name = element.courseId
+                td3.appendChild(check);
+            });
+        }
+
+        function getLessons() {
+
+            fetch('/student/getCourse')
+                .then(response => response.json())
+                .then((son) => {
+                    //console.log(son.data);
+                    veriYazdirmaTerm(son.data.termCourses)
+                    veriYazdirmaFail(son.data.failedCourses)
+                })
+        }
+        getLessons()
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,181 @@
+@media only screen and (min-width:1080px) {
+    /*BU TANIMLAMA MASA ÜSTÜ BİLGİSAYARLAR İÇİN GEÇERLİDİR*/
+    .wrap {
+        overflow: hidden;
+        /* position: relative; */
+    }
+    .image-bg {
+        opacity: 0.1;
+        position: absolute;
+        z-index: 0;
+        display: block;
+        margin-right: auto;
+        width: 55%;
+        height: 50%;
+        margin-top: 18%;
+        margin-left: 320px;
+    }
+    .content {
+        position: relative;
+        z-index: 1;
+    }
+    .btns {
+        width: 100%;
+        margin: auto;
+        margin-top: 3%;
+        display: flex;
+        justify-content: center;
+    }
+    #student {
+        margin-right: 15%;
+    }
+    .form-card {
+        width: 350px;
+        padding: 10px;
+        border-radius: 20px;
+        background: #D9D9D9;
+        border: none;
+        height: 380px;
+        position: relative;
+        margin: auto;
+        margin-top: 7%;
+    }
+}
+
+@media only screen and (min-width: 767px) and (max-width: 1080px) {
+    /*BU TANIMLAMA TABLETLER İÇİN GEÇERLİDİR*/
+    .wrap {
+        overflow: hidden;
+        /* position: relative; */
+    }
+    .image-bg {
+        opacity: 0.1;
+        position: absolute;
+        z-index: 0;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 70%;
+        height: 50%;
+        margin-top: 20%;
+        margin-left: 170px;
+    }
+    .content {
+        position: relative;
+        z-index: 1;
+    }
+    .btns {
+        width: 50%;
+        margin: auto;
+        padding: 5px;
+        padding-top: 20px;
+        margin-top: 5%;
+        display: flex;
+        justify-content: center;
+    }
+    #student {
+        margin-right: 15%;
+    }
+    .form-card {
+        width: 350px;
+        padding: 10px;
+        border-radius: 20px;
+        background: #D9D9D9;
+        border: none;
+        height: 380px;
+        position: relative;
+        margin: auto;
+        margin-top: 15%;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    /*BU TANIMLAMA TABLETLER İÇİN GEÇERLİDİR*/
+    .wrap {
+        overflow: hidden;
+        /* position: relative; */
+    }
+    .image-bg {
+        opacity: 0.1;
+        position: absolute;
+        z-index: 0;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+        height: 50%;
+        margin-top: 20%;
+        margin-left: 40px;
+    }
+    .content {
+        position: relative;
+        z-index: 1;
+    }
+    .btns {
+        width: 50%;
+        margin: auto;
+        padding: 5px;
+        padding-top: 20px;
+        margin-top: 5%;
+        display: flex;
+        justify-content: center;
+    }
+    #student {
+        margin-right: 15%;
+    }
+    .form-card {
+        width: 350px;
+        padding: 10px;
+        border-radius: 20px;
+        background: #D9D9D9;
+        border: none;
+        height: 380px;
+        position: relative;
+        margin: auto;
+        margin-top: 15%;
+    }
+}
+
+@media only screen and (max-width: 479px) {
+    /*BU TANIMLAMA TELEFONLAR İÇİN GEÇERLİDİR*/
+    .wrap {
+        overflow: hidden;
+        /* position: relative; */
+    }
+    .image-bg {
+        opacity: 0.1;
+        position: absolute;
+        z-index: 0;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+        height: 50%;
+        margin-top: 20%;
+        margin-left: 40px;
+    }
+    .content {
+        position: relative;
+        z-index: 1;
+    }
+    .btns {
+        width: 50%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+    }
+    #student {
+        margin-right: 15%;
+    }
+    .form-card {
+        width: 350px;
+        padding: 10px;
+        border-radius: 20px;
+        background: #D9D9D9;
+        border: none;
+        height: 380px;
+        position: relative;
+        margin: auto;
+        margin-top: 15%;
+    }
+}
